@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="font.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <form action="" method="post">
+        <div class="output"></div>
+        <div class="form-input">
+          <h4>Full Name</h4>
+          <input
+            type="text"
+            class="name"
+            placeholder="e.g Nonny Theo Chikezie"
+            name="fullname"
+          />
+        </div>
+        <div class="form-input">
+          <h4>Email</h4>
+          <input
+            type="text"
+            class="name"
+            placeholder="e.g nonny@gmail.com"
+            name="email"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-input">
+          <h4>Password</h4>
+          <input
+            type="password"
+            class="name"
+            placeholder="Create a unique password"
+            name="password"
+          />
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="" /> show password
+        </div>
+        <input type="submit" value="Register" />
+      </form>
+    </main>
+  </body>
+  <script src="jquery.js"></script>
+  <script type="module">
+    let password = document.querySelector("input[type=password]");
+    $(document).ready(function () {
+      $("form").on("submit", function (e) {
+        e.preventDefault();
+        let form = this;
+        let formdata = new FormData(form);
+        $.ajax({
+          url: "handle/form.handle.php",
+          method: "POST",
+          data: formdata,
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function (data) {
+            console.log(data);
+            $(".output").text(data);
+            if(data == "registered successfuly"){
+                location.href = "home.html";
+            }
+          },
+        });
+      });
+      $("input[type=checkbox]").on("click", function () {
+        if (password.type == "password") {
+          password.type = "text";
+        } else {
+          password.type = "password";
+        }
+      });
+    });
+  </script>
+</html>
