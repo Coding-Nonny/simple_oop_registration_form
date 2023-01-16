@@ -1,0 +1,3 @@
+# simple_oop_registration_form
+this a simple registration form using jquery and oop php for people new in oop.
+jquery send send the formdata to php file for validaton and submittion to database...
